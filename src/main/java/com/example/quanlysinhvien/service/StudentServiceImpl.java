@@ -11,11 +11,6 @@ public class StudentServiceImpl implements StudentService<Student> {
 
     public StudentServiceImpl() {
         studentList = new ArrayList<>();
-        studentList.add(new Student(1, "A", 20, "male", "HN", 9));
-        studentList.add(new Student(2, "A", 20, "male", "HN", 8.5));
-        studentList.add(new Student(3, "A", 20, "male", "HN", 10));
-        studentList.add(new Student(4, "A", 20, "male", "HN", 7));
-        studentList.add(new Student(5, "A", 20, "male", "HN", 7.5));
     }
 
     @Override
@@ -27,7 +22,6 @@ public class StudentServiceImpl implements StudentService<Student> {
     public void create(Student student) throws IOException {
         studentList.add(student);
         WriteRead.saveFile(studentList);
-
     }
 
     @Override
