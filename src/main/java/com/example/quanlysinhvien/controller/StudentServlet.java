@@ -76,7 +76,7 @@ public class StudentServlet extends HttpServlet {
     private void showListStudentPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/student/list.jsp");
         List<Student> studentList ;
-        studentList = WriteRead.readFile();
+        studentList = studentService.showAll();
         request.setAttribute("studentList", studentList);
         requestDispatcher.forward(request, response);
     }
@@ -105,20 +105,20 @@ public class StudentServlet extends HttpServlet {
         double averageScore = Double.parseDouble(request.getParameter("averageScore"));
         Student student = new Student(id, name, age, sex, address, averageScore);
         studentService.edit(id, student);
+        WriteRead.saveFile(studentService.showAll());
         response.sendRedirect("/student");
     }
 
     private void createStudentForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         int age = Integer.parseInt(request.getParameter("age"));
         String sex = request.getParameter("sex");
         String address = request.getParameter("address");
         double averageScore = Double.parseDouble(request.getParameter("averageScore"));
-
         Student student = new Student(id, name, age, sex, address, averageScore);
         studentService.create(student);
-
         response.sendRedirect("/student");
     }
 }

@@ -14,8 +14,8 @@ public class StudentServiceImpl implements StudentService<Student> {
     }
 
     @Override
-    public List<Student> showAll() {
-        return studentList;
+    public List<Student> showAll() throws IOException {
+        return studentList = WriteRead.readFile();
     }
 
     @Override

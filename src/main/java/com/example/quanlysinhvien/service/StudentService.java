@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface StudentService <T>{
-    List<T> showAll();
+    List<T> showAll() throws IOException;
     void create(T t) throws IOException;
     void edit(int id, T t) throws IOException;
     void delete(int id) throws IOException;
